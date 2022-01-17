@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "JvAacoNPIxLIv6UAK2IcHulxwzDAHEmYLct7dF5r1gVKHl8ecBMhyNBsNP8opKSQ7JMynA7NbZWSiKhCytP3VQ==",
+  "success": true,
+  "projectFilePath": "/home/waltz/RiderProjects/TheJanitor/TheJanitor/TheJanitor.fsproj",
+  "expectedPackageFiles": [
+    "/home/waltz/.nuget/packages/fsharp.core/6.0.1/fsharp.core.6.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
