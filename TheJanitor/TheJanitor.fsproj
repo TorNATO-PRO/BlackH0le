@@ -9,10 +9,10 @@
     <ItemGroup>
       <Content Include=".dockerignore" />
       <Content Include="Dockerfile" />
+      <Compile Include="Commands.fs" />
       <Compile Include="ConfigLoader.fs" />
       <Compile Include="Core.fs" />
       <Compile Include="Program.fs" />
-      <Compile Include="Commands.fs" />
     </ItemGroup>
 
     <ItemGroup>
