@@ -13,6 +13,11 @@
     <SourceRoot Include="/home/waltz/.nuget/packages/" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgMicrosoft_Extensions_Configuration Condition=" '$(PkgMicrosoft_Extensions_Configuration)' == '' ">/home/waltz/.nuget/packages/microsoft.extensions.configuration/6.0.0</PkgMicrosoft_Extensions_Configuration>
+    <PkgMicrosoft_Extensions_Configuration_Json Condition=" '$(PkgMicrosoft_Extensions_Configuration_Json)' == '' ">/home/waltz/.nuget/packages/microsoft.extensions.configuration.json/6.0.0</PkgMicrosoft_Extensions_Configuration_Json>
+    <PkgMicrosoft_Extensions_Hosting Condition=" '$(PkgMicrosoft_Extensions_Hosting)' == '' ">/home/waltz/.nuget/packages/microsoft.extensions.hosting/6.0.0</PkgMicrosoft_Extensions_Hosting>
     <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">/home/waltz/.nuget/packages/fsharp.core/6.0.1</PkgFSharp_Core>
+    <PkgDSharpPlus Condition=" '$(PkgDSharpPlus)' == '' ">/home/waltz/.nuget/packages/dsharpplus/4.1.0</PkgDSharpPlus>
+    <PkgDSharpPlus_CommandsNext Condition=" '$(PkgDSharpPlus_CommandsNext)' == '' ">/home/waltz/.nuget/packages/dsharpplus.commandsnext/4.1.0</PkgDSharpPlus_CommandsNext>
   </PropertyGroup>
 </Project>

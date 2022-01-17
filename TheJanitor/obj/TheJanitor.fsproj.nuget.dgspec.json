@@ -33,10 +33,35 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "DSharpPlus": {
+              "target": "Package",
+              "version": "[4.1.0, )",
+              "generatePathProperty": true
+            },
+            "DSharpPlus.CommandsNext": {
+              "target": "Package",
+              "version": "[4.1.0, )",
+              "generatePathProperty": true
+            },
             "FSharp.Core": {
               "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
               "target": "Package",
               "version": "[6.0.1, )",
+              "generatePathProperty": true
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[6.0.0, )",
+              "generatePathProperty": true
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[6.0.0, )",
+              "generatePathProperty": true
+            },
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[6.0.0, )",
               "generatePathProperty": true
             }
           },
