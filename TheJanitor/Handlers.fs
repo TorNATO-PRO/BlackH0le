@@ -21,7 +21,7 @@ Date: {e.Message.Timestamp.Date.ToLongDateString()} {e.Message.Timestamp.TimeOfD
         } |> Async.StartAsTask :> Task
 
     [<RequireBotPermissions(Permissions.ManageMessages)>]
-    let messageFuzzer (c: DiscordClient) (e: MessageCreateEventArgs) : Task =
+    let messageFuzzer (_: DiscordClient) (e: MessageCreateEventArgs) : Task =
         // TODO - Deal with stickers and images?
         async {
             if Set.contains e.Channel.Id suspectChannels
