@@ -26,9 +26,11 @@ module Core =
 
     client.add_MessageCreated (messageLogger)
     client.add_MessageCreated (messageFuzzer)
+    client.add_MessageCreated (handleDirectMessage)
 
     // create command handler
     let commandsConfig: CommandsNextConfiguration = CommandsNextConfiguration()
     commandsConfig.StringPrefixes <- [ "/" ]
     let commands: CommandsNextExtension = client.UseCommandsNext(commandsConfig)
     commands.RegisterCommands<Commands>()
+    
