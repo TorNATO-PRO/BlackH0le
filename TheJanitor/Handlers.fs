@@ -11,19 +11,19 @@ open DataStorage
 
 module Handlers =
     let messageLogger (_: DiscordClient) (e: MessageCreateEventArgs) : Task =
-        task {
+        async {
             printfn
                 $"""
 Author: {e.Author.Username} - {e.Author.Id}
 Date: {e.Message.Timestamp.Date.ToLongDateString()} {e.Message.Timestamp.TimeOfDay.ToString()}
 {e.Message.Content}
 """
-        }
+        } |> Async.StartAsTask :> Task
 
     [<RequireBotPermissions(Permissions.ManageMessages)>]
     let messageFuzzer (c: DiscordClient) (e: MessageCreateEventArgs) : Task =
         // TODO - Deal with stickers and images?
-        task {
+        async {
             if Set.contains e.Channel.Id suspectChannels
                && not e.Author.IsBot then
                 do!
@@ -37,9 +37,7 @@ Date: {e.Message.Timestamp.Date.ToLongDateString()} {e.Message.Timestamp.TimeOfD
                     else
                         addPseudoNames e.Author.Id |> ignore
                         Map.find e.Author.Id pseudonames
-                        
-                let currentTimeStamp = DateTime.Now.ToString("g", CultureInfo.GetCultureInfo("en-US"))
-                        
+                                                
                 let imageAttachments =
                     e.Message.Attachments
                     |> Seq.filter (fun i -> i.MediaType.Contains("image"))
@@ -70,4 +68,4 @@ Date: {e.Message.Timestamp.Date.ToLongDateString()} {e.Message.Timestamp.TimeOfD
                         e.Channel.SendMessageAsync(messageBuilder)
                         |> Async.AwaitTask
                         |> Async.Ignore
-        }
+        } |> Async.StartAsTask :> Task
