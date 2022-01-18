@@ -1,5 +1,7 @@
 namespace TheJanitor
 
+open System
+open System.Globalization
 open System.Threading.Tasks
 open DSharpPlus
 open DSharpPlus.CommandsNext.Attributes
@@ -29,6 +31,15 @@ Date: {e.Message.Timestamp.Date.ToLongDateString()} {e.Message.Timestamp.TimeOfD
                     |> Async.AwaitTask
                     |> Async.Ignore
 
+                let username =
+                    if Map.containsKey e.Author.Id pseudonames then
+                        Map.find e.Author.Id pseudonames
+                    else
+                        addPseudoNames e.Author.Id |> ignore
+                        Map.find e.Author.Id pseudonames
+                        
+                let currentTimeStamp = DateTime.Now.ToString("g", CultureInfo.GetCultureInfo("en-US"))
+                        
                 let imageAttachments =
                     e.Message.Attachments
                     |> Seq.filter (fun i -> i.MediaType.Contains("image"))
@@ -43,8 +54,8 @@ Date: {e.Message.Timestamp.Date.ToLongDateString()} {e.Message.Timestamp.TimeOfD
                         anonMessage.Color <- DiscordColor.PhthaloBlue
                         anonMessage.ImageUrl <- image
                         messageBuilder.Embed <- anonMessage
-                        messageBuilder.Content <- e.Message.Content
-
+                        messageBuilder.Content <- $"[%i{username}] %s{e.Message.Content}"
+                        
                         do!
                             e.Channel.SendMessageAsync(messageBuilder)
                             |> Async.AwaitTask
@@ -53,7 +64,7 @@ Date: {e.Message.Timestamp.Date.ToLongDateString()} {e.Message.Timestamp.TimeOfD
 
                 if Seq.isEmpty e.Message.Attachments then
                     let messageBuilder = DiscordMessageBuilder()
-                    messageBuilder.Content <- e.Message.Content
+                    messageBuilder.Content <- $"[%i{username}] %s{e.Message.Content}"
 
                     do!
                         e.Channel.SendMessageAsync(messageBuilder)
