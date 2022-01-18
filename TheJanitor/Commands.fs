@@ -6,6 +6,7 @@ open DSharpPlus
 open DSharpPlus.CommandsNext
 open DSharpPlus.CommandsNext.Attributes
 open DSharpPlus.Entities
+open DataStorage
 
 type Commands() =
 
@@ -156,3 +157,36 @@ type Commands() =
     [<RequireBotPermissions(Permissions.ManageMessages)>]
     member public self.TrashAllAsync(ctx: CommandContext) : Task =
         self.TrashAll(ctx) |> Async.StartAsTask :> Task
+        
+    
+    member private self.SetSuspect(ctx: CommandContext) : Async<unit> =
+        async {
+            addSuspectChannel ctx.Channel.Id |> ignore    
+
+            do!
+                ctx.RespondAsync $"Added {ctx.Channel.Name} to the set of sus channels!"
+                    |> Async.AwaitTask
+                    |> Async.Ignore                
+        }
+        
+    [<Command("susify"); Description("Sets a channel as suspect, anonymizes messages."); Aliases("setsus")>]
+    [<RequireUserPermissions(Permissions.ManageMessages)>]
+    [<RequireBotPermissions(Permissions.ManageMessages)>]
+    member public self.SetSuspectAsync(ctx: CommandContext) : Task =
+        self.SetSuspect(ctx) |> Async.StartAsTask :> Task
+
+    member private self.SetTrust(ctx: CommandContext) : Async<unit> =
+        async {
+            removeSuspectChannel ctx.Channel.Id |> ignore    
+
+            do!
+                ctx.RespondAsync $"Removed {ctx.Channel.Name} from the set of sus channels!"
+                    |> Async.AwaitTask
+                    |> Async.Ignore                
+        }
+        
+    [<Command("trust"); Description("Removes a channel as suspect channel."); Aliases("unsus")>]
+    [<RequireUserPermissions(Permissions.ManageMessages)>]
+    [<RequireBotPermissions(Permissions.ManageMessages)>]
+    member public self.SetTrustAsync(ctx: CommandContext) : Task =
+        self.SetTrust(ctx) |> Async.StartAsTask :> Task

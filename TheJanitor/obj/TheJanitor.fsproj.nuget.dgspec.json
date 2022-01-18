@@ -43,6 +43,11 @@
               "version": "[4.1.0, )",
               "generatePathProperty": true
             },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.123, )",
+              "generatePathProperty": true
+            },
             "FSharp.Core": {
               "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
               "target": "Package",
@@ -62,6 +67,11 @@
             "Microsoft.Extensions.Hosting": {
               "target": "Package",
               "version": "[6.0.0, )",
+              "generatePathProperty": true
+            },
+            "System.Data.SQLite": {
+              "target": "Package",
+              "version": "[1.0.115.5, )",
               "generatePathProperty": true
             }
           },

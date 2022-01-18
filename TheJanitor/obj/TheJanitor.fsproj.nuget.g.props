@@ -12,12 +12,19 @@
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="/home/waltz/.nuget/packages/" />
   </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)entityframework/6.4.4/buildTransitive/netcoreapp3.0/EntityFramework.props" Condition="Exists('$(NuGetPackageRoot)entityframework/6.4.4/buildTransitive/netcoreapp3.0/EntityFramework.props')" />
+  </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgEntityFramework Condition=" '$(PkgEntityFramework)' == '' ">/home/waltz/.nuget/packages/entityframework/6.4.4</PkgEntityFramework>
+    <PkgSystem_Data_SQLite_EF6 Condition=" '$(PkgSystem_Data_SQLite_EF6)' == '' ">/home/waltz/.nuget/packages/system.data.sqlite.ef6/1.0.115.5</PkgSystem_Data_SQLite_EF6>
+    <PkgSystem_Data_SQLite Condition=" '$(PkgSystem_Data_SQLite)' == '' ">/home/waltz/.nuget/packages/system.data.sqlite/1.0.115.5</PkgSystem_Data_SQLite>
     <PkgMicrosoft_Extensions_Configuration Condition=" '$(PkgMicrosoft_Extensions_Configuration)' == '' ">/home/waltz/.nuget/packages/microsoft.extensions.configuration/6.0.0</PkgMicrosoft_Extensions_Configuration>
     <PkgMicrosoft_Extensions_Configuration_Json Condition=" '$(PkgMicrosoft_Extensions_Configuration_Json)' == '' ">/home/waltz/.nuget/packages/microsoft.extensions.configuration.json/6.0.0</PkgMicrosoft_Extensions_Configuration_Json>
     <PkgMicrosoft_Extensions_Hosting Condition=" '$(PkgMicrosoft_Extensions_Hosting)' == '' ">/home/waltz/.nuget/packages/microsoft.extensions.hosting/6.0.0</PkgMicrosoft_Extensions_Hosting>
     <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">/home/waltz/.nuget/packages/fsharp.core/6.0.1</PkgFSharp_Core>
     <PkgDSharpPlus Condition=" '$(PkgDSharpPlus)' == '' ">/home/waltz/.nuget/packages/dsharpplus/4.1.0</PkgDSharpPlus>
     <PkgDSharpPlus_CommandsNext Condition=" '$(PkgDSharpPlus_CommandsNext)' == '' ">/home/waltz/.nuget/packages/dsharpplus.commandsnext/4.1.0</PkgDSharpPlus_CommandsNext>
+    <PkgDapper Condition=" '$(PkgDapper)' == '' ">/home/waltz/.nuget/packages/dapper/2.0.123</PkgDapper>
   </PropertyGroup>
 </Project>
