@@ -9,19 +9,6 @@ open DSharpPlus.EventArgs
 open DataStorage
 
 module Handlers =
-    let messageLogger (_: DiscordClient) (e: MessageCreateEventArgs) : Task =
-        async {
-            printfn
-                $"""
-Author: {e.Author.Username} - {e.Author.Id}
-Date: {e.Message.Timestamp.Date.ToLongDateString()} {e.Message.Timestamp.TimeOfDay.ToString()}
-Channel: {e.Message.Channel.Name}
-{e.Message.Content}
-"""
-        }
-        |> Async.StartAsTask
-        :> Task
-
     [<RequireBotPermissions(Permissions.ManageMessages)>]
     let sendFuzzedMessage (content: string) (e: MessageCreateEventArgs) (channel: DiscordChannel) =
         if Set.contains channel.Id suspectChannels

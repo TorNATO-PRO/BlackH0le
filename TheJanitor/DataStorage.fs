@@ -22,16 +22,15 @@ module DataStorage =
             |> Seq.map uint64
             |> Set.ofSeq
 
+    let tokenizeChannels channels = channels |> Set.toList |> List.map (fun i -> $"%i{i}")
+
     let addSuspectChannel (element: uint64) =
         suspectChannels <- Set.add element suspectChannels
 
         if not (File.Exists(channels)) then
             File.Create(channels) |> ignore
 
-        let tokenizedChannels =
-            suspectChannels
-            |> Set.toList
-            |> List.map (fun i -> $"%i{i}")
+        let tokenizedChannels = tokenizeChannels suspectChannels
 
         File.WriteAllLines(channels, tokenizedChannels)
         Set.contains element suspectChannels
@@ -42,10 +41,7 @@ module DataStorage =
         if not (File.Exists(channels)) then
             File.Create(channels) |> ignore
 
-        let tokenizedChannels =
-            suspectChannels
-            |> Set.toList
-            |> List.map (fun i -> $"%i{i}")
+        let tokenizedChannels = tokenizeChannels suspectChannels
 
         File.WriteAllLines(channels, tokenizedChannels)
         not (Set.contains element suspectChannels)
