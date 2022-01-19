@@ -29,6 +29,6 @@ module Core =
 
     // create command handler
     let commandsConfig: CommandsNextConfiguration = CommandsNextConfiguration()
-    commandsConfig.StringPrefixes <- [ ";" ]
+    commandsConfig.StringPrefixes <- [ "/" ]
     let commands: CommandsNextExtension = client.UseCommandsNext(commandsConfig)
     commands.RegisterCommands<Commands>()
